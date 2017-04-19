@@ -14,12 +14,15 @@ class JNewsViewJNews extends JViewLegacy
 	 */
 	function display($tpl = null)
 	{
-		// Assign data to the view
+		
+		
+		
 		$this->news = $this->get('News');
 		
-		$input = JFactory::getApplication()->input;
+		// Assign data to the view
+	
 		
-		$this->cid = $input->post->get('cid');	
+		//echo "display=".$tpl;
 		
 		
 		// Check for errors.
@@ -38,10 +41,27 @@ class JNewsViewJNews extends JViewLegacy
 	
 	protected function addToolBar()
 	{		
-		JToolbarHelper::addNew('jnews.add');
-		JToolbarHelper::editList('jnews.edit');
-		JToolbarHelper::publishList('jnews.publish');
-		JToolBarHelper::unpublishList('jnews.unpublish');
-		JToolbarHelper::deleteList('', 'jnews.delete');
+	$input = JFactory::getApplication()->input;
+	
+	//var_dump($input );
+	
+		$layout =  $input->get('layout');
+		$id = $this->get('id');
+		
+		
+		if($layout !='edit'){	
+			JToolbarHelper::addNew('jnews.add');
+			JToolbarHelper::editList('jnews.edit');
+			JToolbarHelper::publishList('jnews.publish');
+			JToolBarHelper::unpublishList('jnews.unpublish');
+			JToolbarHelper::deleteList('', 'jnews.delete');
+		}
+		else{
+			
+				JToolbarHelper::save('jnews.save');
+				JToolbarHelper::cancel('jnews.cancel');
+			
+		}
+		
 	}
 }

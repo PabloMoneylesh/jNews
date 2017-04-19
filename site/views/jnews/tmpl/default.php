@@ -12,23 +12,27 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 <h1>NEWS:</h1>
 <?php foreach ($this->news as $item) : ?>
-<p>
-<?php echo $item->id; ?> - <?php echo $item->date; ?>
-</p>
 
 <h5>
 <?php echo $item->news; ?>
 </h5>
+<p>
+<?php echo $item->date; ?>
+</p>
 
 
 <?php endforeach; ?>
 
+<?php if (JFactory::getUser()->authorise('core.registered', 'com_jnews')): ?>
 <form method="post" action="<?php echo JUri::getInstance(); ?>" >
 			
-	<input type="submit" name="submit_vote" value="Add news" />
+	
 	<input type="hidden" name="task" value="jnews.add" />
 	<?php echo JHtml::_('form.token'); ?>				
 	<textarea  id="news_text" name="news_text" style="height: 100px; width: 90%;" placeholder=""></textarea>
-			
-				
+	<input type="submit" name="submit_vote" value="Add news" />			
 </form>
+<?php else: ?>
+<p>Чтобы добавить новость, войдите на сайт или зарегистрируйтесь</p>
+<?php endif ?>
+

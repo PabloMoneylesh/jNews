@@ -15,21 +15,22 @@ defined('_JEXEC') or die;
  *
  * @since  1.5
  */
-class JNewsController extends JControllerForm
+class JNewsControllerJNews extends JControllerForm
 {
-	/*public function addNews($text){		
-		 
+	
+	public function add(){		
+	
+	$input = JFactory::getApplication()->input;
+	
+	
+	var_dump ($this->input->get('news_text'));
+		
+		
+		$text =  $this->input->data;
+	echo "<br>-----+++-----------add----------".$text;	 
 		 $model = $this->getModel("JNews");
 		 $result =$model->addNews($text);
 		//$this->setRedirect(JRoute::_('index.php?option=com_jnews', false), "Yor message will by displayed after validation by administration");
 		
 	}
-	public function add(){		
-	echo "add";
-		 
-		 $model = $this->getModel("JNews");
-		 $result =$model->addNews($text);
-		//$this->setRedirect(JRoute::_('index.php?option=com_jnews', false), "Yor message will by displayed after validation by administration");
-		
-	}*/
 }

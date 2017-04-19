@@ -58,6 +58,25 @@ class JNewsModelJNews extends JModelList
 		return true;
 	}
 	
+	public function updateNews($id, $text)
+	{
+		
+		
+		$db		= JFactory::getDbo();
+		$query	= $db->getQuery(true);
+		
+		$query
+		->update($db->quoteName('#__jnews'))
+		->set('news='.$db->quote($text))
+		->where($db->quoteName('id')."=".$id);
+		
+		
+		$db->setQuery($query);
+		$db->execute();
+		
+		return true;
+	}
+	
 	
 	function deleteNews($id){
 		$db		= JFactory::getDbo();

@@ -9,17 +9,19 @@
  
 // No direct access
 defined('_JEXEC') or die('Restricted access');
+
 $input = JFactory::getApplication()->input;
 		
 $id = $input->get('id');	
-$model = $this->getModel();
-$news = $model->getOneNews($id);
+if(isset($id)){
+	$model = $this->getModel();
+	$news = $model->getOneNews($id);
+}
 
 ?>
-<form method="post" action="<?php echo JUri::getInstance(); ?>" >
-			
-	<input type="submit" name="submit_vote" value="Add news" />
+<form action="index.php?option=com_jnews" method="post" id="adminForm" name="adminForm">
 	<input type="hidden" name="task" value="jnews.save" />
+	<input type="hidden" name="id" value="<?php echo $id; ?>" />
 	<?php echo JHtml::_('form.token'); ?>				
 	<textarea  id="news_text" name="news_text" style="height: 100px; width: 90%;" placeholder=""><?php echo $news->news; ?></textarea>
 			

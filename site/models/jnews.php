@@ -24,10 +24,10 @@ class JNewsModelJNews extends JModelItem
 	
 	public function addNews($text)
 	{
-		echo "addNews";
-		
 		$db		= JFactory::getDbo();
 		$query	= $db->getQuery(true);
+		
+		echo $text;
 		
 		$values = array($db->quote($text), 'CURDATE()');
 		

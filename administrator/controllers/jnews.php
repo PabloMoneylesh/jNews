@@ -19,7 +19,7 @@ class JNewsControllerJnews extends JControllerAdmin
 {
 	
 	public function publish(){
-		//echo "<br>function Publish()".JFactory::getApplication()->input->get('task');
+		
 		if(JFactory::getApplication()->input->get('task') == 'unpublish'){
 			$this->unpublish();
 			return;
@@ -27,7 +27,7 @@ class JNewsControllerJnews extends JControllerAdmin
 		$input = JFactory::getApplication()->input;
 		
 		$cid = $input->post->get('cid');
-		//var_dump($cid);
+	
 		
 		
 		$model = $this->getModel();
@@ -42,7 +42,7 @@ class JNewsControllerJnews extends JControllerAdmin
 		$input = JFactory::getApplication()->input;
 		
 		$cid = $input->post->get('cid');
-		//var_dump($cid);
+		
 		
 		$model = $this->getModel();
 		foreach ($cid as $id){
@@ -67,25 +67,36 @@ class JNewsControllerJnews extends JControllerAdmin
 	}
 	
 	public function edit(){
-		echo"<br>edit";
+	
 		$input = JFactory::getApplication()->input;
 		
 		$cid = $input->post->get('cid');	
 		$this->setRedirect(JRoute::_('index.php?option=com_jnews&view=jnews&layout=edit&id='.$cid[0], false));
 	}
+	
+	
 	public function add(){
-		echo"<br>function add";
-
-		$this->setRedirect(JRoute::_('index.php?option=com_jnews&view=jnews&layout=edit', false));
-		
+		$this->setRedirect(JRoute::_('index.php?option=com_jnews&view=jnews&layout=edit', false));		
 	}
+	
 	public function save(){		
 		
 		$input = JFactory::getApplication()->input;
 		
+		$id = $input->post->get('id');			
 		$text = $input->post->get('news_text');	
+		//echo $text . "  ".$id;
 		$model = $this->getModel();
-		$model->addNews($text);
+		if($id !=""){
+			$model->updateNews($id, $text);
+		}
+		else {
+			$model->addNews($text);
+		}
+		$this->setRedirect(JRoute::_('index.php?option=com_jnews', false));
+	}
+	
+	public function cancel(){
 		$this->setRedirect(JRoute::_('index.php?option=com_jnews', false));
 	}
 	

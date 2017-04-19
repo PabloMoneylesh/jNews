@@ -17,18 +17,13 @@ require_once(JPATH_COMPONENT.'/controller.php');
 
 
 // Get an instance of the controller prefixed by SLogin
-$controller = new JNewsController();
+$controller = JControllerForm::getInstance('JNews');
 
-
-$app = JFactory::getApplication();
 
 $input = JFactory::getApplication()->input;
+echo "task=".$input->getCmd('task');
+echo "<br>txt=".$input->getCmd('news_text');
 
-if($input->getCmd('task') == 'jnews.add')
-{
-	
-	$controller->addNews($input->getCmd('news_text'));
-}
 
 $controller->execute($input->getCmd('task'));
 
