@@ -3,7 +3,7 @@
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
  
-class JNewsModelJNews extends JModelItem
+class JNewsModelJNews extends JModelList
 {
 	
 	public function getNews()
@@ -22,9 +22,24 @@ class JNewsModelJNews extends JModelItem
 		return $results;
 	}
 	
+	public function getOneNews($id)
+	{
+		
+		$db		= JFactory::getDbo();
+		$query	= $db->getQuery(true);
+
+		$query->select(array('id, news, date, published'))
+			->from('#__jnews')
+			->where($db->quoteName('id')."=".$id);
+		$db->setQuery($query);
+		$results = $db->loadObject();
+		
+		return $results;
+	}
+	
 	public function addNews($text)
 	{
-		echo "addNews";
+		
 		
 		$db		= JFactory::getDbo();
 		$query	= $db->getQuery(true);
@@ -42,4 +57,53 @@ class JNewsModelJNews extends JModelItem
 		
 		return true;
 	}
+	
+	
+	function deleteNews($id){
+		$db		= JFactory::getDbo();
+		$query	= $db->getQuery(true);
+		
+		$query
+		->delete($db->quoteName('#__jnews'))		
+		->where($db->quoteName('id')."=".$id);
+		
+		
+		$db->setQuery($query);
+		$db->execute();
+	}
+	
+	public function publishNews($id)
+	{
+		$this->updatePublishState($id,1);
+		
+	}
+	public function unpublishNews($id)
+	{		
+		$this->updatePublishState($id,0);
+		
+	}
+	
+	function updatePublishState($id, $state){
+		
+		$db		= JFactory::getDbo();
+		$query	= $db->getQuery(true);
+		
+		$values = array($db->quote($text), 'CURDATE()');
+		
+		$query
+		->update($db->quoteName('#__jnews'))
+		->set('published='.$state)
+		->where($db->quoteName('id')."=".$id);
+		
+		
+		$db->setQuery($query);
+		$db->execute();
+		
+		
+		
+		
+		return true;
+	}
+	
+	
 }

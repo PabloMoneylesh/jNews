@@ -17,10 +17,13 @@ $user = JFactory::getUser();
 jimport('joomla.application.component.helper');
 require_once( JPATH_COMPONENT."/controller.php" );
 
-$controller = new JNewsController();
+//$controller = new JNewsController();
+$controller = JControllerForm::getInstance('JNews');
 
+echo "task=".JFactory::getApplication()->input->get('task');
 // Perform the Request task
-$controller->execute(JRequest::getCmd('task', null));
+
+$controller->execute(JFactory::getApplication()->input->get('task'));
 $controller->redirect();
 
 echo "<br/><div align='center'><i>JNEWS</i></div>";

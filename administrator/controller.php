@@ -18,4 +18,11 @@ defined('_JEXEC') or die;
 class JNewsController extends JControllerForm
 {
 	
+public function addNews($text){		
+		 
+		 $model = $this->getModel("JNews");
+		 $result =$model->addNews($text);
+		return $result;
+	}
+	
 }

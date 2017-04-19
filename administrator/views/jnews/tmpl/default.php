@@ -11,10 +11,11 @@
 defined('_JEXEC') or die('Restricted access');
 ?>
 <h1>NEWS:</h1>
-<form action="index.php?option=com_helloworld&view=helloworlds" method="post" id="adminForm" name="adminForm">
+<form action="index.php?option=com_jnews" method="post" id="adminForm" name="adminForm">
 	<table class="table table-striped table-hover">
 		<thead>
 		<tr>
+			<th width="5%"></th>
 			<th width="5%">Id</th>
 			
 			<th width="60%">
@@ -38,17 +39,20 @@ defined('_JEXEC') or die('Restricted access');
 		<tbody>
 		<?php foreach ($this->news as $i=>$item) : ?>
 		<tr>
-			<th width="5%"><?php echo $item->id; ?></th>
+			<td>
+			<?php echo JHtml::_('grid.id', $i, $item->id); ?>
+			</td>
+			<td width="5%"><?php echo $item->id; ?></td>
 			
-			<th width="60%">
+			<td width="60%">
 				<?php echo $item->news; ?>
-			</th>
-			<th width="5%">
+			</td>
+			<td width="5%">
 				<?php echo $item->date; ?>
-			</th>
-			<th width="2%">
+			</td>
+			<td width="2%">
 			<?php echo $item->published; ?>
-			</th>
+			</td>
 		</tr>
 		
 	<?php endforeach; ?>	

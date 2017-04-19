@@ -17,6 +17,11 @@ class JNewsViewJNews extends JViewLegacy
 		// Assign data to the view
 		$this->news = $this->get('News');
 		
+		$input = JFactory::getApplication()->input;
+		
+		$this->cid = $input->post->get('cid');	
+		
+		
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
@@ -32,10 +37,11 @@ class JNewsViewJNews extends JViewLegacy
 	}
 	
 	protected function addToolBar()
-	{
-		JToolbarHelper::title("Some text");
+	{		
 		JToolbarHelper::addNew('jnews.add');
 		JToolbarHelper::editList('jnews.edit');
+		JToolbarHelper::publishList('jnews.publish');
+		JToolBarHelper::unpublishList('jnews.unpublish');
 		JToolbarHelper::deleteList('', 'jnews.delete');
 	}
 }
