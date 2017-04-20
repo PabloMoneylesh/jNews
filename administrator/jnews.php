@@ -20,7 +20,10 @@ require_once( JPATH_COMPONENT."/controller.php" );
 //$controller = new JNewsController();
 $controller = JControllerForm::getInstance('JNews');
 
-echo "task=".JFactory::getApplication()->input->get('task');
+$input = JFactory::getApplication()->input;
+		
+		
+
 // Perform the Request task
 
 $controller->execute(JFactory::getApplication()->input->get('task'));

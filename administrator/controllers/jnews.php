@@ -84,8 +84,8 @@ class JNewsControllerJnews extends JControllerAdmin
 		$input = JFactory::getApplication()->input;
 		
 		$id = $input->post->get('id');			
-		$text = $input->post->get('news_text');	
-		//echo $text . "  ".$id;
+		$text = $input->post->getString('news_text');	
+		
 		$model = $this->getModel();
 		if($id !=""){
 			$model->updateNews($id, $text);

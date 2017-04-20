@@ -21,16 +21,12 @@ class JNewsControllerJNews extends JControllerForm
 	public function add(){		
 	
 	$input = JFactory::getApplication()->input;
-	
-	
-	var_dump ($this->input->get('news_text'));
 		
-		
-		$text =  $this->input->data;
-	echo "<br>-----+++-----------add----------".$text;	 
-		 $model = $this->getModel("JNews");
-		 $result =$model->addNews($text);
-		//$this->setRedirect(JRoute::_('index.php?option=com_jnews', false), "Yor message will by displayed after validation by administration");
+	$text =  $this->input->getString('news_text');
+
+	$model = $this->getModel("JNews");
+	$result =$model->addNews($text);
+	$this->setRedirect(JRoute::_('index.php?option=com_jnews', false), "Yor message will by displayed after validation by administration");
 		
 	}
 }

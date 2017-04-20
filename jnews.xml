@@ -27,7 +27,7 @@
 		<filename>jnews.php</filename>
 		<filename>controller.php</filename>
 		
-		
+		<folder>controllers</folder>	
 		<folder>models</folder>	
 		<folder>views</folder>	
 	</files>
@@ -36,14 +36,17 @@
 
 	<administration>
 		<menu img="" view="jnews">JNews</menu>
-		<submenu>
-			<menu view="jnews" img="class:jnews-news" link="view=news">news</menu>
-			
-		</submenu>
+		
 
 		<files folder="administrator">
 			
+			<folder>controllers</folder>
 			<folder>install</folder>
+			<folder>models</folder>
+			<folder>views</folder>
+			
+			<filename>controller.php</filename>
+			<filename>jnews.php</filename>
 			
 		</files>
 	
